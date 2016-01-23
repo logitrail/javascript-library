@@ -14,13 +14,18 @@ var Logitrail = {
         var url = params.bridgeUrl;
         console.debug(url);
         
+        if (!params.hasOwnProperty("host")) {
+            params.host = 'https://checkout.logitrail.com';
+        }
+        
         var frame = this.createFrame(element,url,this.getDomain(document.URL));
         
         this.currentCheckout = {
             container: element,
             frame: frame,
             onSuccess: params.success,
-            onError: params.error
+            onError: params.error,
+            checkoutHost: params.host
         };
     },
     
@@ -118,7 +123,7 @@ var Logitrail = {
             return;
         }
         
-        if (event.origin !== "https://checkout.logitrail.com") {
+        if (event.origin !== current.checkoutHost) {
             return;
         }
         
