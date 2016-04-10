@@ -130,8 +130,9 @@ var Logitrail = {
         if (response.message === 'logitrail.checkout_result') {
             // Callback to the success script
             this.currentCheckout.onSuccess({
-                delivery_fee: response.delivery_fee,
-                order_id:     response.order_id
+                delivery_fee:  response.delivery_fee,
+                order_id:      response.order_id,
+                delivery_info: response.delivery_info
             });
             return;
         }
